@@ -1,322 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Usta Turkish Restaurant</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usta</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
   <style>
-    /* Reset and base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Georgia', 'Times New Roman', serif;
-      background-color: #1a1a1a;
-      color: #f5f5f5;
-      line-height: 1.6;
+      background: #f8f9fa;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #dee2e6;
     }
-
-    /* Header */
-    header {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d1f0e 100%);
-      border-bottom: 3px solid #c9a84c;
-      padding: 20px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    .navbar-brand {
+      font-weight: 700;
+      color: #0d6efd;
     }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .card {
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s;
     }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #c9a84c;
-      letter-spacing: 2px;
+    .card:hover {
+      transform: translateY(-4px);
     }
-
-    .logo span {
-      color: #f5f5f5;
+    .btn-primary {
+      border-radius: 30px;
+      padding: 10px 28px;
+      font-weight: 600;
     }
-
-    nav a {
-      color: #f5f5f5;
-      text-decoration: none;
-      margin-left: 30px;
-      font-size: 1.1rem;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #c9a84c;
-    }
-
-    /* Hero */
-    .hero {
-      background: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      color: #c9a84c;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    }
-
-    .hero p {
-      font-size: 1.5rem;
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #c9a84c;
-      color: #1a1a1a;
-      padding: 14px 40px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .btn:hover {
-      background: #b8922e;
-      transform: scale(1.05);
-    }
-
-    /* About */
-    .about {
-      padding: 80px 0;
-      background: #222;
-    }
-
-    .about h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      color: #c9a84c;
-      margin-bottom: 40px;
-    }
-
-    .about p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.2rem;
-      text-align: center;
-    }
-
-    /* Menu preview */
-    .menu-preview {
-      padding: 80px 0;
-    }
-
-    .menu-preview h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      color: #c9a84c;
-      margin-bottom: 40px;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    .menu-item {
-      background: #222;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-
-    .menu-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .menu-item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .menu-item-content {
-      padding: 20px;
-    }
-
-    .menu-item h3 {
-      color: #c9a84c;
-      margin-bottom: 10px;
-    }
-
-    .menu-item .price {
-      font-size: 1.3rem;
-      color: #c9a84c;
-      font-weight: bold;
-    }
-
-    /* Contact */
-    .contact {
-      padding: 80px 0;
-      background: #222;
-      text-align: center;
-    }
-
-    .contact h2 {
-      font-size: 2.5rem;
-      color: #c9a84c;
-      margin-bottom: 30px;
-    }
-
-    .contact-info {
-      font-size: 1.2rem;
-      line-height: 2;
-    }
-
-    .contact-info i {
-      margin-right: 10px;
-      color: #c9a84c;
-    }
-
-    /* Footer */
     footer {
-      background: #111;
-      padding: 30px 0;
-      text-align: center;
-      border-top: 3px solid #c9a84c;
-    }
-
-    footer p {
-      color: #888;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .hero p {
-        font-size: 1.2rem;
-      }
-      header .container {
-        flex-direction: column;
-      }
-      nav a {
-        margin: 0 10px;
-      }
+      margin-top: 60px;
+      padding: 20px 0;
+      color: #6c757d;
+      font-size: 0.9rem;
+      border-top: 1px solid #dee2e6;
     }
   </style>
 </head>
 <body>
-  <header>
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <div class="logo">Usta<span> Restaurant</span></div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#menu">Menu</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <a class="navbar-brand" href="#">Usta</a>
+      <div>
+        <a href="#" class="btn btn-outline-primary btn-sm me-2">Giriş</a>
+        <a href="#" class="btn btn-primary btn-sm">Kaydol</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Usta</h1>
-      <p>Experience the rich flavors of authentic Turkish cuisine, prepared with tradition and passion.</p>
-      <a href="#menu" class="btn">Explore Our Menu</a>
+  <main class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-bold">Usta</h1>
+      <p class="lead text-secondary">Türkiye'nin en güvenilir usta bulma platformu</p>
+      <form class="row g-2 justify-content-center mt-4" id="searchForm">
+        <div class="col-md-5">
+          <input type="text" class="form-control form-control-lg" placeholder="Hizmet ara (ör: elektrik, tesisat, boya)" id="searchInput" />
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control form-control-lg" placeholder="İl / İlçe" id="locationInput" />
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary btn-lg w-100">Ara</button>
+        </div>
+      </form>
     </div>
-  </section>
 
-  <section id="about" class="about">
-    <div class="container">
-      <h2>Our Story</h2>
-      <p>At Usta, we bring the heart of Turkey to your table. Our chefs craft each dish using time-honored recipes passed down through generations. From our wood-fired kebabs to our freshly baked pide, every bite tells a story of tradition, quality, and love for authentic Turkish flavors.</p>
-    </div>
-  </section>
-
-  <section id="menu" class="menu-preview">
-    <div class="container">
-      <h2>Signature Dishes</h2>
-      <div class="menu-grid">
-        <div class="menu-item">
-          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Adana Kebab">
-          <div class="menu-item-content">
-            <h3>Adana Kebab</h3>
-            <p>Spicy minced lamb kebab grilled to perfection, served with rice and lavash.</p>
-            <p class="price">$18.90</p>
+    <div class="row g-4" id="results">
+      <div class="col-md-4">
+        <div class="card p-4 h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Elektrikçi</h5>
+            <p class="card-text text-secondary">Ali Yılmaz — 4.9 ⭐ (124 yorum)</p>
+            <span class="badge bg-success mb-2">İstanbul</span>
+            <p class="text-muted small">Aydınlatma, priz, anahtar ve tesisat işleri</p>
+            <a href="#" class="btn btn-outline-primary btn-sm">İletişime Geç</a>
           </div>
         </div>
-        <div class="menu-item">
-          <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mixed Kebab">
-          <div class="menu-item-content">
-            <h3>Mixed Kebab Platter</h3>
-            <p>A selection of our finest kebabs with grilled vegetables and bulgur rice.</p>
-            <p class="price">$24.50</p>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-4 h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Tesisatçı</h5>
+            <p class="card-text text-secondary">Mehmet Demir — 4.8 ⭐ (98 yorum)</p>
+            <span class="badge bg-success mb-2">Ankara</span>
+            <p class="text-muted small">Su kaçağı, tıkanıklık açma, boru montajı</p>
+            <a href="#" class="btn btn-outline-primary btn-sm">İletişime Geç</a>
           </div>
         </div>
-        <div class="menu-item">
-          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Baklava">
-          <div class="menu-item-content">
-            <h3>Baklava</h3>
-            <p>Layers of flaky phyllo dough filled with pistachios and sweet honey syrup.</p>
-            <p class="price">$9.90</p>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-4 h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Marangoz</h5>
+            <p class="card-text text-secondary">Ahmet Kaya — 4.7 ⭐ (76 yorum)</p>
+            <span class="badge bg-success mb-2">İzmir</span>
+            <p class="text-muted small">Mutfak dolabı, kapı, mobilya montaj ve tamir</p>
+            <a href="#" class="btn btn-outline-primary btn-sm">İletişime Geç</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <section id="contact" class="contact">
+  <footer class="text-center">
     <div class="container">
-      <h2>Get in Touch</h2>
-      <div class="contact-info">
-        <p><i>📍</i> 123 Istiklal Street, Istanbul, Turkey</p>
-        <p><i>📞</i> +90 212 555 1234</p>
-        <p><i>✉️</i> info@ustarestaurant.com</p>
-        <p><i>🕐</i> Mon - Sun: 11:00 AM - 11:00 PM</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2024 Usta Turkish Restaurant. All rights reserved.</p>
+      <p>&copy; 2025 Usta. Tüm hakları saklıdır.</p>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
