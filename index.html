@@ -1,5 +1,333 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="UTF-8"><title>Usta Test</title></head>
-<body><h1>Usta Restaurant - Test Page</h1><p>If you see this, the update works.</p></body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usta — Турецкий ресторан в Бишкеке</title>
+<meta name="description" content="Usta — аутентичный турецкий ресторан на Аалы Токомбаева 25. Завтраки, шашлык, турецкий чай. 4.5★ (444 отзыва). Доставка. +996 755 531 212">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a1a;line-height:1.6}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06);padding:.75rem 0}
+.navbar.scrolled{padding:.5rem 0;box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:7rem 1rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=600&fit=crop') center/cover;opacity:.12}
+.hero-content{position:relative;z-index:2;max-width:800px;margin:0 auto}
+.section-title{font-family:Georgia,serif;font-size:2rem;color:#1a1a2e;text-align:center;margin-bottom:.5rem}
+.gold-line{width:50px;height:2px;background:#c9a84c;margin:1rem auto}
+.card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:1.5rem;transition:all .2s}
+.card:hover{border-color:rgba(201,168,76,.3);box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.menu-item{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.menu-item:last-child{border-bottom:none}
+.btn-primary{background:#c9a84c;color:#fff;padding:.75rem 1.5rem;border-radius:8px;font-weight:500;transition:all .2s;border:none;cursor:pointer;display:inline-block;text-decoration:none}
+.btn-primary:hover{background:#b8973a}
+.btn-outline{background:transparent;border:1px solid #c9a84c;color:#c9a84c;padding:.75rem 1.5rem;border-radius:8px;font-weight:500;transition:all .2s;display:inline-block;text-decoration:none}
+.btn-outline:hover{background:rgba(201,168,76,.05)}
+.tag{background:rgba(201,168,76,.1);color:#8a6d1f;padding:.35rem .9rem;border-radius:100px;font-size:.8rem;font-weight:500;display:inline-block}
+.open-badge{background:#22c55e;color:#fff;padding:.25rem .75rem;border-radius:100px;font-size:.8rem;font-weight:500;display:inline-flex;align-items:center;gap:.35rem}
+.open-badge::before{content:'';width:6px;height:6px;background:#fff;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.review-card{background:#f8f9fa;border-radius:12px;padding:1.5rem}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.info-item{display:flex;align-items:flex-start;gap:.75rem;padding:1rem;background:#f8f9fa;border-radius:12px}
+.info-item .icon{font-size:1.25rem;flex-shrink:0}
+.mobile-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.08);padding:.75rem 1rem;display:flex;gap:.5rem;z-index:50}
+@media(min-width:769px){.mobile-cta{display:none!important}}@media(max-width:768px){body{padding-bottom:80px}}
+.container{max-width:900px;margin:0 auto;padding:0 1rem}
+section{padding:3rem 0}
+.bg-gray{background:#f8f9fa}
+.text-center{text-align:center}
+.flex-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+.grid-2{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:1fr;gap:1.5rem}
+@media(min-width:768px){.grid-2{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr 1fr}}
+.text-sm{font-size:.9rem}
+.text-gray{color:#666}
+.text-gray-light{color:#999}
+.mb-1{margin-bottom:.5rem}.mb-2{margin-bottom:1rem}.mb-3{margin-bottom:1.5rem}.mb-4{margin-bottom:2rem}
+.mt-2{margin-top:1rem}.mt-3{margin-top:1.5rem}.mt-4{margin-top:2rem}
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+<div class="container flex" style="display:flex;justify-content:space-between;align-items:center">
+<a href="#" style="font-size:1.25rem;font-weight:600;font-family:Georgia,serif;color:#1a1a2e">Usta</a>
+<div class="hidden" style="display:flex;gap:1.5rem;align-items:center" id="desktopNav">
+<a href="#about" style="color:#666;text-decoration:none;font-size:.9rem">О нас</a>
+<a href="#menu" style="color:#666;text-decoration:none;font-size:.9rem">Меню</a>
+<a href="#why" style="color:#666;text-decoration:none;font-size:.9rem">Почему мы</a>
+<a href="#reviews" style="color:#666;text-decoration:none;font-size:.9rem">Отзывы</a>
+<a href="#contact" style="color:#666;text-decoration:none;font-size:.9rem">Контакты</a>
+<a href="#reservation" class="btn-primary" style="font-size:.85rem;padding:.5rem 1rem">Забронировать</a>
+</div>
+<button id="menuToggle" style="background:none;border:none;font-size:1.5rem;cursor:pointer">☰</button>
+</div>
+</nav>
+
+<div id="mobileMenu" style="display:none;position:fixed;top:60px;left:0;right:0;background:#fff;border-bottom:1px solid #eee;padding:1rem;z-index:40">
+<a href="#about" style="display:block;padding:.5rem 0;color:#333;text-decoration:none">О нас</a>
+<a href="#menu" style="display:block;padding:.5rem 0;color:#333;text-decoration:none">Меню</a>
+<a href="#why" style="display:block;padding:.5rem 0;color:#333;text-decoration:none">Почему мы</a>
+<a href="#reviews" style="display:block;padding:.5rem 0;color:#333;text-decoration:none">Отзывы</a>
+<a href="#contact" style="display:block;padding:.5rem 0;color:#333;text-decoration:none">Контакты</a>
+<a href="#reservation" class="btn-primary" style="display:block;text-align:center;margin-top:.5rem">Забронировать</a>
+</div>
+
+<section class="hero">
+<div class="hero-content">
+<div class="tag mb-2">Турецкая кухня</div>
+<h1 style="font-size:2.5rem;font-family:Georgia,serif;margin-bottom:.5rem">Usta</h1>
+<p style="font-size:1.1rem;color:rgba(255,255,255,.8);margin-bottom:.5rem">Аутентичный турецкий ресторан в Бишкеке</p>
+<div style="margin-bottom:1rem"><span class="open-badge">Сейчас открыто</span> <span style="color:rgba(255,255,255,.6);font-size:.9rem">08:00 – 00:00</span></div>
+<div class="flex-wrap mb-3">
+<a href="#reservation" class="btn-primary">Забронировать столик</a>
+<a href="tel:+996755531212" class="btn-outline" style="border-color:rgba(255,255,255,.4);color:#fff">+996 755 531 212</a>
+</div>
+<div style="display:flex;gap:1.5rem;justify-content:center;font-size:.9rem;color:rgba(255,255,255,.7)">
+<div>★ 4.5 (444 отзыва)</div>
+<div>📍 Аалы Токомбаева 25</div>
+<div>💰 2500–3000 KGS</div>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="container text-center">
+<p style="font-size:.8rem;color:#999;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">о ресторане</p>
+<h2 class="section-title">Usta</h2>
+<div class="gold-line"></div>
+<p style="color:#666;max-width:600px;margin:1.5rem auto">Аутентичный турецкий ресторан в центре Бишкека. Завтраки по-турецки, шашлык на мангале, настоящий турецкий чай и рахат-лукум. Уютная атмосфера и гостеприимство.</p>
+<div class="flex-wrap mt-2">
+<span class="tag">🥐 Турецкие завтраки</span>
+<span class="tag">🔥 Шашлык</span>
+<span class="tag">🍵 Турецкий чай</span>
+<span class="tag">🛵 Доставка</span>
+</div>
+</div>
+</section>
+
+<section id="menu" class="bg-gray">
+<div class="container">
+<p style="font-size:.8rem;color:#999;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;text-align:center">меню</p>
+<h2 class="section-title">Наше меню</h2>
+<div class="gold-line"></div>
+<div class="grid-2 mt-3">
+<div class="card">
+<h3 style="margin-bottom:1rem">🥐 Завтраки</h3>
+<div class="menu-item"><span>Турецкий завтрак</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Менемен</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Сырники с медом</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Бёрек с сыром</span><span style="color:#999">—</span></div>
+</div>
+<div class="card">
+<h3 style="margin-bottom:1rem">🔥 Мангал</h3>
+<div class="menu-item"><span>Шашлык из баранины</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Шашлык из курицы</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Люля-кебаб</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Крылышки на мангале</span><span style="color:#999">—</span></div>
+</div>
+<div class="card">
+<h3 style="margin-bottom:1rem">🍲 Горячее</h3>
+<div class="menu-item"><span>Плов по-турецки</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Манты</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Лагман</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Долма</span><span style="color:#999">—</span></div>
+</div>
+<div class="card">
+<h3 style="margin-bottom:1rem">🍵 Напитки</h3>
+<div class="menu-item"><span>Турецкий чай</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Айран</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Турецкий кофе</span><span style="color:#999">—</span></div>
+<div class="menu-item"><span>Фреш</span><span style="color:#999">—</span></div>
+</div>
+</div>
+<p style="text-align:center;color:#999;font-size:.85rem;margin-top:1.5rem">Цены уточняйте у официантов. Средний чек: 2500–3000 KGS</p>
+</div>
+</section>
+
+<section id="why">
+<div class="container">
+<p style="font-size:.8rem;color:#999;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;text-align:center">преимущества</p>
+<h2 class="section-title">Почему Usta</h2>
+<div class="gold-line"></div>
+<div class="grid-3 mt-3">
+<div class="card text-center">
+<div style="font-size:2rem;margin-bottom:.5rem">🥐</div>
+<h3 style="margin-bottom:.5rem">Турецкие завтраки</h3>
+<p style="color:#999;font-size:.9rem">Оливки, сыр, мед, каймак, яйца и свежая выпечка</p>
+</div>
+<div class="card text-center">
+<div style="font-size:2rem;margin-bottom:.5rem">🔥</div>
+<h3 style="margin-bottom:.5rem">Шашлык на мангале</h3>
+<p style="color:#999;font-size:.9rem">Ароматный шашлык из баранины и курицы</p>
+</div>
+<div class="card text-center">
+<div style="font-size:2rem;margin-bottom:.5rem">🍵</div>
+<h3 style="margin-bottom:.5rem">Турецкий чай</h3>
+<p style="color:#999;font-size:.9rem">Настоящий турецкий чай в традиционных стаканах</p>
+</div>
+<div class="card text-center">
+<div style="font-size:2rem;margin-bottom:.5rem">🛵</div>
+<h3 style="margin-bottom:.5rem">Доставка</h3>
+<p style="color:#999;font-size:.9rem">Любимые блюда у вас дома или в офисе</p>
+</div>
+<div class="card text-center">
+<div style="font-size:2rem;margin-bottom:.5rem">🌿</div>
+<h3 style="margin-bottom:.5rem">Свежие ингредиенты</h3>
+<p style="color:#999;font-size:.9rem">Только качественные продукты для настоящего вкуса</p>
+</div>
+<div class="card text-center">
+<div style="font-size:2rem;margin-bottom:.5rem">⭐</div>
+<h3 style="margin-bottom:.5rem">4.5★ на Google</h3>
+<p style="color:#999;font-size:.9rem">444 отзыва. Гости отмечают вкусную еду</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="reviews" class="bg-gray">
+<div class="container">
+<p style="font-size:.8rem;color:#999;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;text-align:center">отзывы</p>
+<h2 class="section-title">Говорят гости</h2>
+<div class="gold-line"></div>
+<div class="grid-3 mt-3">
+<div class="review-card">
+<div style="color:#c9a84c;margin-bottom:.5rem">★★★★★</div>
+<p style="color:#666;font-style:italic;font-size:.9rem;margin-bottom:1rem">"The food is very delicious"</p>
+<div style="font-size:.85rem;color:#999">— Hassan, Google</div>
+</div>
+<div class="review-card">
+<div style="color:#c9a84c;margin-bottom:.5rem">★★★★★</div>
+<p style="color:#666;font-style:italic;font-size:.9rem;margin-bottom:1rem">"Nice food and good ambience"</p>
+<div style="font-size:.85rem;color:#999">— Sajesh Dasan, Google</div>
+</div>
+<div class="review-card">
+<div style="color:#c9a84c;margin-bottom:.5rem">★★★★★</div>
+<p style="color:#666;font-style:italic;font-size:.9rem;margin-bottom:1rem">"The place looks freaking amazing... food looks delicious and the ambiance is just so lit"</p>
+<div style="font-size:.85rem;color:#999">— Aqsa Kay, Google</div>
+</div>
+</div>
+<div class="text-center mt-3">
+<div style="display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid #eee;border-radius:100px;padding:.5rem 1rem">
+<span style="color:#c9a84c;font-weight:600">4.5</span>
+<span style="color:#999;font-size:.85rem">444 отзыва на Google Maps</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+<p style="font-size:.8rem;color:#999;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;text-align:center">контакты</p>
+<h2 class="section-title">Контакты</h2>
+<div class="gold-line"></div>
+<div class="info-grid mt-3">
+<div class="info-item">
+<div class="icon">📍</div>
+<div>
+<div style="font-weight:500;font-size:.9rem">Адрес</div>
+<div style="color:#999;font-size:.9rem">ул. Аалы Токомбаева, 25<br>Бишкек, Кыргызстан</div>
+</div>
+</div>
+<div class="info-item">
+<div class="icon">📞</div>
+<div>
+<div style="font-weight:500;font-size:.9rem">Телефон</div>
+<a href="tel:+996755531212" style="color:#999;font-size:.9rem;text-decoration:none">+996 755 531 212</a>
+</div>
+</div>
+<div class="info-item">
+<div class="icon">⏰</div>
+<div>
+<div style="font-weight:500;font-size:.9rem">Режим работы</div>
+<div style="color:#999;font-size:.9rem">Ежедневно: 08:00 – 00:00</div>
+<div class="mt-1"><span class="open-badge">Сейчас открыто</span></div>
+</div>
+</div>
+<div class="info-item">
+<div class="icon">📷</div>
+<div>
+<div style="font-weight:500;font-size:.9rem">Instagram</div>
+<a href="https://www.instagram.com/usta__restaurant/" target="_blank" style="color:#999;font-size:.9rem;text-decoration:none">@usta__restaurant ↗</a>
+</div>
+</div>
+<div class="info-item">
+<div class="icon">💰</div>
+<div>
+<div style="font-weight:500;font-size:.9rem">Средний чек</div>
+<div style="color:#999;font-size:.9rem">2500–3000 KGS за персону</div>
+</div>
+</div>
+<div class="info-item">
+<div class="icon">🛵</div>
+<div>
+<div style="font-weight:500;font-size:.9rem">Доставка</div>
+<div style="color:#999;font-size:.9rem">Доставка и самовывоз</div>
+</div>
+</div>
+</div>
+<div style="margin-top:1.5rem;border-radius:12px;overflow:hidden;border:1px solid #eee">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.5!2d74.6149!3d42.8226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDQ5JzIxLjQiTiA3NMKwMzYnNTMuNyJF!5e0!3m2!1sru!2skg!4v1" width="100%" height="250" style="border:0" allowfullscreen loading="lazy"></iframe>
+</div>
+</div>
+</section>
+
+<section id="reservation" class="bg-gray">
+<div class="container" style="max-width:500px">
+<p style="font-size:.8rem;color:#999;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;text-align:center">бронирование</p>
+<h2 class="section-title">Забронировать столик</h2>
+<div class="gold-line"></div>
+<div class="card mt-3">
+<form onsubmit="event.preventDefault();document.getElementById('success').style.display='block';this.reset()">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem">
+<input type="text" placeholder="Ваше имя" required style="padding:.75rem;border:1px solid #ddd;border-radius:8px;font-size:.9rem">
+<input type="tel" placeholder="Телефон" required style="padding:.75rem;border:1px solid #ddd;border-radius:8px;font-size:.9rem">
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem">
+<input type="date" style="padding:.75rem;border:1px solid #ddd;border-radius:8px;font-size:.9rem">
+<select style="padding:.75rem;border:1px solid #ddd;border-radius:8px;font-size:.9rem;color:#666">
+<option>Кол-во гостей</option><option>2</option><option>3–4</option><option>5–8</option><option>8+</option>
+</select>
+</div>
+<select style="padding:.75rem;border:1px solid #ddd;border-radius:8px;font-size:.9rem;color:#666;width:100%;margin-bottom:.75rem">
+<option>Повод</option><option>Завтрак</option><option>Бизнес-ланч</option><option>Семейный ужин</option><option>День рождения</option><option>Банкет</option>
+</select>
+<textarea placeholder="Особые пожелания..." rows="3" style="padding:.75rem;border:1px solid #ddd;border-radius:8px;font-size:.9rem;width:100%;margin-bottom:.75rem;resize:vertical"></textarea>
+<button type="submit" class="btn-primary" style="width:100%">Забронировать</button>
+<div id="success" style="display:none;margin-top:.75rem;text-align:center;color:#22c55e;font-size:.9rem">Спасибо! Мы подтвердим бронирование по телефону</div>
+</form>
+</div>
+</div>
+</section>
+
+<footer style="border-top:1px solid #eee;padding:2rem 0;text-align:center">
+<div class="container">
+<p style="font-size:1.25rem;font-family:Georgia,serif;margin-bottom:.25rem">Usta</p>
+<p style="color:#999;font-size:.9rem">ул. Аалы Токомбаева, 25 · Бишкек</p>
+<p style="color:#ccc;font-size:.8rem;margin-top:.25rem">+996 755 531 212 · @usta__restaurant</p>
+<p style="color:#ccc;font-size:.75rem;margin-top:1rem">© 2026 Usta · Created by <a href="https://www.instagram.com/fountaine_ai/" target="_blank" style="color:#999;text-decoration:none">@Fountaine_AI</a></p>
+</div>
+</footer>
+
+<div class="mobile-cta">
+<a href="tel:+996755531212" class="btn-primary" style="flex:1;text-align:center;font-size:.9rem">Позвонить</a>
+<a href="#reservation" class="btn-outline" style="flex:1;text-align:center;font-size:.9rem">Забронировать</a>
+</div>
+
+<script>
+document.getElementById('menuToggle').addEventListener('click',function(){
+var m=document.getElementById('mobileMenu');
+m.style.display=m.style.display==='block'?'none':'block';
+});
+document.querySelectorAll('#mobileMenu a').forEach(function(a){
+a.addEventListener('click',function(){document.getElementById('mobileMenu').style.display='none'});
+});
+window.addEventListener('scroll',function(){
+document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+});
+</script>
+</body>
 </html>
